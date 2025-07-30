@@ -89,11 +89,12 @@ chmod 600 /home/ubuntu/.ssh/authorized_keys
 
 sudo apt update -y
 sudo apt install -y nginx
+PUBLIC_IP=$(curl ifconfig.me)
 
 cat << 'EOL' | sudo tee /etc/nginx/sites-available/my-site.conf
 server {
     listen 80;
-    server_name 13.62.19.64;
+    server_name \$PUBLIC_IP;
 
     location / {
         proxy_pass http://127.0.0.1:8080;
