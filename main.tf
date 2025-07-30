@@ -79,9 +79,8 @@ resource "aws_instance" "app_server" {
   subnet_id              = "subnet-84e2f4fc"
   vpc_security_group_ids = [aws_security_group.app_sg.id]
   key_name               = aws_key_pair.generated_key.key_name
-
-  user_data = <<-EOF
-    #!/bin/bash
+  user_data              = <<EOF
+#!/bin/bash
 mkdir -p /home/ubuntu/.ssh
 echo "${tls_private_key.ssh_key.public_key_openssh}" > /home/ubuntu/.ssh/authorized_keys
 chown -R ubuntu:ubuntu /home/ubuntu/.ssh
@@ -89,19 +88,20 @@ chmod 600 /home/ubuntu/.ssh/authorized_keys
 
 sudo apt update -y
 sudo apt install -y nginx
+
 PUBLIC_IP=$(curl ifconfig.me)
 
 cat << 'EOL' | sudo tee /etc/nginx/sites-available/my-site.conf
 server {
     listen 80;
-    server_name \$PUBLIC_IP;
+    server_name $PUBLIC_IP;
 
     location / {
         proxy_pass http://127.0.0.1:8080;
-        proxy_set_header Host $host;
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header Host \$host;
+        proxy_set_header X-Real-IP \$remote_addr;
+        proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto \$scheme;
     }
 }
 EOL
@@ -110,8 +110,8 @@ sudo ln -sf /etc/nginx/sites-available/my-site.conf /etc/nginx/sites-enabled/my-
 sudo rm -f /etc/nginx/sites-enabled/default
 
 sudo systemctl restart nginx
+EOF
 
-  EOF
 
   tags = {
     Name = "terraform-practice"
