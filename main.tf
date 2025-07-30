@@ -91,7 +91,7 @@ sudo apt install -y nginx
 
 PUBLIC_IP=$(curl ifconfig.me)
 
-cat << 'EOL' | sudo tee /etc/nginx/sites-available/my-site.conf
+cat << EOL | sudo tee /etc/nginx/sites-available/my-site.conf
 server {
     listen 80;
     server_name $PUBLIC_IP;
