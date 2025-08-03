@@ -1,0 +1,43 @@
+#cloud-config
+
+package_update: true
+packages: 
+  - nginx
+  - git
+  - docker.io
+
+runcmd:
+  - mkdir -p /home/ubuntu/.ssh
+  - echo "${public_key}" > /home/ubuntu/.ssh/authorized_keys
+  - chown -R ubuntu:ubuntu /home/ubuntu/.ssh
+  - chmod 600 /home/ubuntu/.ssh/authorized_keys
+
+  - systemctl enable nginx
+  - systemctl start nginx
+  - systemctl enable docker
+  - systemctl start docker
+
+  - cd ~
+  - git clone https://github.com/ivo-velev123/turbogears.git
+  - cd ~/turbogears
+  - docker build -t myapp .
+  - docker run -d -p 8080:8080 --name myapp myapp
+
+  - bash -c "cat <<EOF > /etc/nginx/sites-available/my-site.conf
+    server {
+        listen 80;
+        server_name $(curl -s ifconfig.me);
+
+        location / {
+            proxy_pass http://127.0.0.1:8080;
+            proxy_set_header Host \$host;
+            proxy_set_header X-Real-IP \$remote_addr;
+            proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for;
+            proxy_set_header X-Forwarded-Proto \$scheme;
+        }
+    }
+    EOF"
+
+  - ln -sf /etc/nginx/sites-available/my-site.conf /etc/nginx/sites-enabled/my-site.conf
+  - rm -f /etc/nginx/sites-enabled/default
+  - systemctl restart nginx
