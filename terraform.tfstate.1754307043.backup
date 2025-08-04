@@ -1,0 +1,496 @@
+{
+  "version": 4,
+  "terraform_version": "1.12.2",
+  "serial": 238,
+  "lineage": "9d80412f-b5c6-1293-33c7-e674f1ec2b65",
+  "outputs": {},
+  "resources": [
+    {
+      "mode": "data",
+      "type": "aws_ami",
+      "name": "ubuntu",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "allow_unsafe_filter": null,
+            "architecture": "x86_64",
+            "arn": "arn:aws:ec2:eu-north-1::image/ami-054ee4a2168300401",
+            "block_device_mappings": [
+              {
+                "device_name": "/dev/sda1",
+                "ebs": {
+                  "delete_on_termination": "true",
+                  "encrypted": "false",
+                  "iops": "0",
+                  "snapshot_id": "snap-03ceb1392e586bcf3",
+                  "throughput": "0",
+                  "volume_initialization_rate": "0",
+                  "volume_size": "8",
+                  "volume_type": "gp3"
+                },
+                "no_device": "",
+                "virtual_name": ""
+              },
+              {
+                "device_name": "/dev/sdb",
+                "ebs": {},
+                "no_device": "",
+                "virtual_name": "ephemeral0"
+              },
+              {
+                "device_name": "/dev/sdc",
+                "ebs": {},
+                "no_device": "",
+                "virtual_name": "ephemeral1"
+              }
+            ],
+            "boot_mode": "uefi-preferred",
+            "creation_date": "2025-07-31T11:00:28.000Z",
+            "deprecation_time": "2027-07-31T11:00:28.000Z",
+            "description": "Canonical, Ubuntu, 24.04, amd64 noble image",
+            "ena_support": true,
+            "executable_users": null,
+            "filter": [
+              {
+                "name": "name",
+                "values": [
+                  "ubuntu/images/hvm-ssd-gp3/ubuntu-noble-24.04-amd64-server-*"
+                ]
+              }
+            ],
+            "hypervisor": "xen",
+            "id": "ami-054ee4a2168300401",
+            "image_id": "ami-054ee4a2168300401",
+            "image_location": "amazon/ubuntu/images/hvm-ssd-gp3/ubuntu-noble-24.04-amd64-server-20250731",
+            "image_owner_alias": "amazon",
+            "image_type": "machine",
+            "imds_support": "v2.0",
+            "include_deprecated": false,
+            "kernel_id": "",
+            "last_launched_time": "",
+            "most_recent": true,
+            "name": "ubuntu/images/hvm-ssd-gp3/ubuntu-noble-24.04-amd64-server-20250731",
+            "name_regex": null,
+            "owner_id": "099720109477",
+            "owners": [
+              "099720109477"
+            ],
+            "platform": "",
+            "platform_details": "Linux/UNIX",
+            "product_codes": [],
+            "public": true,
+            "ramdisk_id": "",
+            "region": "eu-north-1",
+            "root_device_name": "/dev/sda1",
+            "root_device_type": "ebs",
+            "root_snapshot_id": "snap-03ceb1392e586bcf3",
+            "sriov_net_support": "simple",
+            "state": "available",
+            "state_reason": {
+              "code": "UNSET",
+              "message": "UNSET"
+            },
+            "tags": {},
+            "timeouts": null,
+            "tpm_support": "",
+            "uefi_data": null,
+            "usage_operation": "RunInstances",
+            "virtualization_type": "hvm"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "aws_instance",
+      "name": "app_server",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 2,
+          "attributes": {
+            "ami": "ami-054ee4a2168300401",
+            "arn": "arn:aws:ec2:eu-north-1:261219435789:instance/i-05f58692eedd1971c",
+            "associate_public_ip_address": true,
+            "availability_zone": "eu-north-1b",
+            "capacity_reservation_specification": [
+              {
+                "capacity_reservation_preference": "open",
+                "capacity_reservation_target": []
+              }
+            ],
+            "cpu_options": [
+              {
+                "amd_sev_snp": "",
+                "core_count": 1,
+                "threads_per_core": 2
+              }
+            ],
+            "credit_specification": [
+              {
+                "cpu_credits": "unlimited"
+              }
+            ],
+            "disable_api_stop": false,
+            "disable_api_termination": false,
+            "ebs_block_device": [],
+            "ebs_optimized": false,
+            "enable_primary_ipv6": null,
+            "enclave_options": [
+              {
+                "enabled": false
+              }
+            ],
+            "ephemeral_block_device": [],
+            "get_password_data": false,
+            "hibernation": false,
+            "host_id": "",
+            "host_resource_group_arn": null,
+            "iam_instance_profile": "",
+            "id": "i-05f58692eedd1971c",
+            "instance_initiated_shutdown_behavior": "stop",
+            "instance_lifecycle": "",
+            "instance_market_options": [],
+            "instance_state": "running",
+            "instance_type": "t3.micro",
+            "ipv6_address_count": 0,
+            "ipv6_addresses": [],
+            "key_name": "terraform-key",
+            "launch_template": [],
+            "maintenance_options": [
+              {
+                "auto_recovery": "default"
+              }
+            ],
+            "metadata_options": [
+              {
+                "http_endpoint": "enabled",
+                "http_protocol_ipv6": "disabled",
+                "http_put_response_hop_limit": 2,
+                "http_tokens": "required",
+                "instance_metadata_tags": "disabled"
+              }
+            ],
+            "monitoring": false,
+            "network_interface": [],
+            "outpost_arn": "",
+            "password_data": "",
+            "placement_group": "",
+            "placement_partition_number": 0,
+            "primary_network_interface_id": "eni-080bba7e3966e3bd0",
+            "private_dns": "ip-172-31-32-174.eu-north-1.compute.internal",
+            "private_dns_name_options": [
+              {
+                "enable_resource_name_dns_a_record": false,
+                "enable_resource_name_dns_aaaa_record": false,
+                "hostname_type": "ip-name"
+              }
+            ],
+            "private_ip": "172.31.32.174",
+            "public_dns": "ec2-16-171-37-241.eu-north-1.compute.amazonaws.com",
+            "public_ip": "16.171.37.241",
+            "region": "eu-north-1",
+            "root_block_device": [
+              {
+                "delete_on_termination": true,
+                "device_name": "/dev/sda1",
+                "encrypted": false,
+                "iops": 3000,
+                "kms_key_id": "",
+                "tags": {},
+                "tags_all": {},
+                "throughput": 125,
+                "volume_id": "vol-0393cfe4f457b5d03",
+                "volume_size": 8,
+                "volume_type": "gp3"
+              }
+            ],
+            "secondary_private_ips": [],
+            "security_groups": [
+              "app-security-group"
+            ],
+            "source_dest_check": true,
+            "spot_instance_request_id": "",
+            "subnet_id": "subnet-84e2f4fc",
+            "tags": {
+              "Name": "terraform-practice"
+            },
+            "tags_all": {
+              "Name": "terraform-practice"
+            },
+            "tenancy": "default",
+            "timeouts": null,
+            "user_data": "#cloud-config\n\npackage_update: true\npackages:\n  - nginx\n  - git\n  - docker.io\n\nwrite_files:\n  - path: /etc/nginx/sites-available/my-site.conf\n    permissions: '0644'\n    content: |\n      server {\n        listen 80;\n        server_name _;\n\n        location / {\n            proxy_pass http://127.0.0.1:8080;\n            proxy_set_header Host \\$host;\n            proxy_set_header X-Real-IP \\$remote_addr;\n            proxy_set_header X-Forwarded-For \\$proxy_add_x_forwarded_for;\n            proxy_set_header X-Forwarded-Proto \\$scheme;\n        }\n      }\n\nruncmd:\n  # Enable nginx site and restart\n  - ln -s /etc/nginx/sites-available/my-site.conf /etc/nginx/sites-enabled/\n  - rm /etc/nginx/sites-enabled/default\n  - systemctl restart nginx\n\n  # Start docker service\n  - systemctl start docker\n  - systemctl enable docker\n\n  # Clone your repo\n  - git clone https://github.com/ivo-velev123/turbogears.git /home/ubuntu/turbogears\n\n  # Build docker image\n  - docker build -t myapp /home/ubuntu/turbogears\n\n  # Run docker container \n  - docker run -d -p 8080:8080 --name myapp myapp\n\n\n\n\n\n\n",
+            "user_data_base64": null,
+            "user_data_replace_on_change": false,
+            "volume_tags": null,
+            "vpc_security_group_ids": [
+              "sg-0faaf8c28cc641690"
+            ]
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjo2MDAwMDAwMDAwMDAsImRlbGV0ZSI6MTIwMDAwMDAwMDAwMCwicmVhZCI6OTAwMDAwMDAwMDAwLCJ1cGRhdGUiOjYwMDAwMDAwMDAwMH0sInNjaGVtYV92ZXJzaW9uIjoiMiJ9",
+          "dependencies": [
+            "aws_key_pair.generated_key",
+            "aws_security_group.app_sg",
+            "data.aws_ami.ubuntu",
+            "tls_private_key.ssh_key"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "aws_key_pair",
+      "name": "generated_key",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 1,
+          "attributes": {
+            "arn": "arn:aws:ec2:eu-north-1:261219435789:key-pair/terraform-key",
+            "fingerprint": "97:78:08:5a:df:ce:72:7d:df:9c:d2:27:61:b4:58:1d",
+            "id": "terraform-key",
+            "key_name": "terraform-key",
+            "key_name_prefix": "",
+            "key_pair_id": "key-086fc4f0589c9ed4d",
+            "key_type": "rsa",
+            "public_key": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQC/qXekVcCl3nO8YiCseW61ZbRaDwojh2ZEJt0wBaUQksWYaGQSbbCT6vy6Reu/9tsDyRzRII2yuOkfhhZDIrGGdxKijgerZfYHtTEVCs2hqiaWZu33GMu9gbq2kpQxqfOa64wl1F5SjTN9JfL1iv5inRbKIw5uLZXRmq40oDBn9s2lCqVQi8/h+gRBgRchw/9ahw4PhzDmq3K6BXq4bemWXA23veWT047K1yTp99La8fRSq8BiK8S59xpKP59vJMKrqe5gMV2aDLHnIXysN6OVaeLKQg0L/64VvcDUdu5qJNDtw3udI8xQ1elo1JuIxGdFECCCOCtQj0RBYAAqw26/jzlu/YxWmJHRtjuF4CB6IEeKIQEvX5W2JVUKf6N6sw/xEmhPasiD2s2t+iUKPyGQIclrGrov1zf+d97mwPCrFUWVtCXmvEdtVcsXj0Xc9sAb6EPRX601z173g2wpTz5Mfm9NemsoIyDQKekOpnKvQF41wONhkTT9liUS2ctn5ZYDurEJTeUYqCsIWlBFPgIQczVNnASz4POnsPY9eAaLFJKMzJQYJfeEubCvk07AvLNaKwtpM1qeDfJPqCrOeQcMBzwiKQhdvF2VPAmAWPZq/ezGT6Mjgv5uucl8H5GjPJ74273cuxJkAoVvwvTocZQ8Si1KX8Sp5GgJd/odwjUm0Q==",
+            "region": "eu-north-1",
+            "tags": {},
+            "tags_all": {}
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "eyJzY2hlbWFfdmVyc2lvbiI6IjEifQ==",
+          "dependencies": [
+            "tls_private_key.ssh_key"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "aws_security_group",
+      "name": "app_sg",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 1,
+          "attributes": {
+            "arn": "arn:aws:ec2:eu-north-1:261219435789:security-group/sg-0faaf8c28cc641690",
+            "description": "Allow SSH, HTTP, and 8080",
+            "egress": [
+              {
+                "cidr_blocks": [
+                  "0.0.0.0/0"
+                ],
+                "description": "Allow all outbound traffic",
+                "from_port": 0,
+                "ipv6_cidr_blocks": [],
+                "prefix_list_ids": [],
+                "protocol": "-1",
+                "security_groups": [],
+                "self": false,
+                "to_port": 0
+              }
+            ],
+            "id": "sg-0faaf8c28cc641690",
+            "ingress": [
+              {
+                "cidr_blocks": [
+                  "0.0.0.0/0"
+                ],
+                "description": "App port 8080",
+                "from_port": 8080,
+                "ipv6_cidr_blocks": [],
+                "prefix_list_ids": [],
+                "protocol": "tcp",
+                "security_groups": [],
+                "self": false,
+                "to_port": 8080
+              },
+              {
+                "cidr_blocks": [
+                  "0.0.0.0/0"
+                ],
+                "description": "HTTP access",
+                "from_port": 80,
+                "ipv6_cidr_blocks": [],
+                "prefix_list_ids": [],
+                "protocol": "tcp",
+                "security_groups": [],
+                "self": false,
+                "to_port": 80
+              },
+              {
+                "cidr_blocks": [
+                  "0.0.0.0/0"
+                ],
+                "description": "SSH access",
+                "from_port": 22,
+                "ipv6_cidr_blocks": [],
+                "prefix_list_ids": [],
+                "protocol": "tcp",
+                "security_groups": [],
+                "self": false,
+                "to_port": 22
+              }
+            ],
+            "name": "app-security-group",
+            "name_prefix": "",
+            "owner_id": "261219435789",
+            "region": "eu-north-1",
+            "revoke_rules_on_delete": false,
+            "tags": {
+              "Name": "my-security-group"
+            },
+            "tags_all": {
+              "Name": "my-security-group"
+            },
+            "timeouts": null,
+            "vpc_id": "vpc-367e885f"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjo2MDAwMDAwMDAwMDAsImRlbGV0ZSI6OTAwMDAwMDAwMDAwfSwic2NoZW1hX3ZlcnNpb24iOiIxIn0="
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "local_file",
+      "name": "private_key",
+      "provider": "provider[\"registry.terraform.io/hashicorp/local\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "content": "-----BEGIN RSA PRIVATE KEY-----\n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\n-----END RSA PRIVATE KEY-----\n",
+            "content_base64": null,
+            "content_base64sha256": "y5Uw8EWtXpphBefu0eNaMhKpjm1kj+cvy+0FGfkIAOY=",
+            "content_base64sha512": "AGbgaqq8OhLEI4W4AArnW1CNysLKCjnImLrnVtkadc927m/IGSjR9/fjIHi0tvfRGIFI4tXdjTS2AjDNq5o/Yw==",
+            "content_md5": "0eb1cb90bf487a540549e501a877e2d4",
+            "content_sha1": "629428a7098e6b583aae24d7c19f2af0c1b86be7",
+            "content_sha256": "cb9530f045ad5e9a6105e7eed1e35a3212a98e6d648fe72fcbed0519f90800e6",
+            "content_sha512": "0066e06aaabc3a12c42385b8000ae75b508dcac2ca0a39c898bae756d91a75cf76ee6fc81928d1f7f7e32078b4b6f7d1188148e2d5dd8d34b60230cdab9a3f63",
+            "directory_permission": "0777",
+            "file_permission": "0777",
+            "filename": "./.ssh/terraform_rsa",
+            "id": "629428a7098e6b583aae24d7c19f2af0c1b86be7",
+            "sensitive_content": null,
+            "source": null
+          },
+          "sensitive_attributes": [
+            [
+              {
+                "type": "get_attr",
+                "value": "content"
+              }
+            ],
+            [
+              {
+                "type": "get_attr",
+                "value": "sensitive_content"
+              }
+            ]
+          ],
+          "identity_schema_version": 0,
+          "dependencies": [
+            "tls_private_key.ssh_key"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "local_file",
+      "name": "public_key",
+      "provider": "provider[\"registry.terraform.io/hashicorp/local\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "content": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQC/qXekVcCl3nO8YiCseW61ZbRaDwojh2ZEJt0wBaUQksWYaGQSbbCT6vy6Reu/9tsDyRzRII2yuOkfhhZDIrGGdxKijgerZfYHtTEVCs2hqiaWZu33GMu9gbq2kpQxqfOa64wl1F5SjTN9JfL1iv5inRbKIw5uLZXRmq40oDBn9s2lCqVQi8/h+gRBgRchw/9ahw4PhzDmq3K6BXq4bemWXA23veWT047K1yTp99La8fRSq8BiK8S59xpKP59vJMKrqe5gMV2aDLHnIXysN6OVaeLKQg0L/64VvcDUdu5qJNDtw3udI8xQ1elo1JuIxGdFECCCOCtQj0RBYAAqw26/jzlu/YxWmJHRtjuF4CB6IEeKIQEvX5W2JVUKf6N6sw/xEmhPasiD2s2t+iUKPyGQIclrGrov1zf+d97mwPCrFUWVtCXmvEdtVcsXj0Xc9sAb6EPRX601z173g2wpTz5Mfm9NemsoIyDQKekOpnKvQF41wONhkTT9liUS2ctn5ZYDurEJTeUYqCsIWlBFPgIQczVNnASz4POnsPY9eAaLFJKMzJQYJfeEubCvk07AvLNaKwtpM1qeDfJPqCrOeQcMBzwiKQhdvF2VPAmAWPZq/ezGT6Mjgv5uucl8H5GjPJ74273cuxJkAoVvwvTocZQ8Si1KX8Sp5GgJd/odwjUm0Q==\n",
+            "content_base64": null,
+            "content_base64sha256": "a2oxdnZuRtzcE0AgUnq2op6QCdembEdOcki2/Rg58D4=",
+            "content_base64sha512": "JLc70wyT3SeDHW1b1uw0Rfky9qLq2i/95lKgA2t5ti5R9Ot0Kk1Yt661Hu8uJGSSEsVN6jQOBLlPZbSb+2D+Kw==",
+            "content_md5": "6401ef8f94cf58941c74fe05f90efec5",
+            "content_sha1": "820d0ea1a5ac4df447cdb3bbfd834495503fef41",
+            "content_sha256": "6b6a3176766e46dcdc134020527ab6a29e9009d7a66c474e7248b6fd1839f03e",
+            "content_sha512": "24b73bd30c93dd27831d6d5bd6ec3445f932f6a2eada2ffde652a0036b79b62e51f4eb742a4d58b7aeb51eef2e24649212c54dea340e04b94f65b49bfb60fe2b",
+            "directory_permission": "0777",
+            "file_permission": "0777",
+            "filename": "./.ssh/terraform_rsa.pub",
+            "id": "820d0ea1a5ac4df447cdb3bbfd834495503fef41",
+            "sensitive_content": null,
+            "source": null
+          },
+          "sensitive_attributes": [
+            [
+              {
+                "type": "get_attr",
+                "value": "sensitive_content"
+              }
+            ]
+          ],
+          "identity_schema_version": 0,
+          "dependencies": [
+            "tls_private_key.ssh_key"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "tls_private_key",
+      "name": "ssh_key",
+      "provider": "provider[\"registry.terraform.io/hashicorp/tls\"]",
+      "instances": [
+        {
+          "schema_version": 1,
+          "attributes": {
+            "algorithm": "RSA",
+            "ecdsa_curve": "P224",
+            "id": "ffe2ebdac4c1a7d246b8474744ec548c689b3d0f",
+            "private_key_openssh": "-----BEGIN OPENSSH PRIVATE KEY-----\n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\n-----END OPENSSH PRIVATE KEY-----\n",
+            "private_key_pem": "-----BEGIN RSA PRIVATE KEY-----\n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\n-----END RSA PRIVATE KEY-----\n",
+            "private_key_pem_pkcs8": "-----BEGIN PRIVATE KEY-----\n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\nk4xDEA5ZYl3Kt8wUbAIDdl0S665ipQ==\n-----END PRIVATE KEY-----\n",
+            "public_key_fingerprint_md5": "c2:e5:3f:12:15:20:fa:4c:d6:b3:d3:8c:4b:37:27:41",
+            "public_key_fingerprint_sha256": "SHA256:alQqzoV3WFmMKDQUPAWjzuWkV8KmADioLLDRsPbrPTQ",
+            "public_key_openssh": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQC/qXekVcCl3nO8YiCseW61ZbRaDwojh2ZEJt0wBaUQksWYaGQSbbCT6vy6Reu/9tsDyRzRII2yuOkfhhZDIrGGdxKijgerZfYHtTEVCs2hqiaWZu33GMu9gbq2kpQxqfOa64wl1F5SjTN9JfL1iv5inRbKIw5uLZXRmq40oDBn9s2lCqVQi8/h+gRBgRchw/9ahw4PhzDmq3K6BXq4bemWXA23veWT047K1yTp99La8fRSq8BiK8S59xpKP59vJMKrqe5gMV2aDLHnIXysN6OVaeLKQg0L/64VvcDUdu5qJNDtw3udI8xQ1elo1JuIxGdFECCCOCtQj0RBYAAqw26/jzlu/YxWmJHRtjuF4CB6IEeKIQEvX5W2JVUKf6N6sw/xEmhPasiD2s2t+iUKPyGQIclrGrov1zf+d97mwPCrFUWVtCXmvEdtVcsXj0Xc9sAb6EPRX601z173g2wpTz5Mfm9NemsoIyDQKekOpnKvQF41wONhkTT9liUS2ctn5ZYDurEJTeUYqCsIWlBFPgIQczVNnASz4POnsPY9eAaLFJKMzJQYJfeEubCvk07AvLNaKwtpM1qeDfJPqCrOeQcMBzwiKQhdvF2VPAmAWPZq/ezGT6Mjgv5uucl8H5GjPJ74273cuxJkAoVvwvTocZQ8Si1KX8Sp5GgJd/odwjUm0Q==\n",
+            "public_key_pem": "-----BEGIN PUBLIC KEY-----\nMIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAv6l3pFXApd5zvGIgrHlu\ntWW0Wg8KI4dmRCbdMAWlEJLFmGhkEm2wk+r8ukXrv/bbA8kc0SCNsrjpH4YWQyKx\nhncSoo4Hq2X2B7UxFQrNoaomlmbt9xjLvYG6tpKUManzmuuMJdReUo0zfSXy9Yr+\nYp0WyiMObi2V0ZquNKAwZ/bNpQqlUIvP4foEQYEXIcP/WocOD4cw5qtyugV6uG3p\nllwNt73lk9OOytck6ffS2vH0UqvAYivEufcaSj+fbyTCq6nuYDFdmgyx5yF8rDej\nlWniykINC/+uFb3A1HbuaiTQ7cN7nSPMUNXpaNSbiMRnRRAggjgrUI9EQWAAKsNu\nv485bv2MVpiR0bY7heAgeiBHiiEBL1+VtiVVCn+jerMP8RJoT2rIg9rNrfolCj8h\nkCHJaxq6L9c3/nfe5sDwqxVFlbQl5rxHbVXLF49F3PbAG+hD0V+tNc9e94NsKU8+\nTH5vTXprKCMg0CnpDqZyr0BeNcDjYZE0/ZYlEtnLZ+WWA7qxCU3lGKgrCFpQRT4C\nEHM1TZwEs+Dzp7D2PXgGixSSjMyUGCX3hLmwr5NOwLyzWisLaTNang3yT6gqznkH\nDAc8IikIXbxdlTwJgFj2av3sxk+jI4L+brnJfB+Rozye+Nu93LsSZAKFb8L06HGU\nPEotSl/EqeRoCXf6HcI1JtECAwEAAQ==\n-----END PUBLIC KEY-----\n",
+            "rsa_bits": 4096
+          },
+          "sensitive_attributes": [
+            [
+              {
+                "type": "get_attr",
+                "value": "private_key_openssh"
+              }
+            ],
+            [
+              {
+                "type": "get_attr",
+                "value": "private_key_pem"
+              }
+            ],
+            [
+              {
+                "type": "get_attr",
+                "value": "private_key_pem_pkcs8"
+              }
+            ]
+          ],
+          "identity_schema_version": 0
+        }
+      ]
+    }
+  ],
+  "check_results": null
+}
