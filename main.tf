@@ -36,6 +36,7 @@ resource "aws_security_group" "app_sg" {
   description = "Allow SSH, HTTP, and 8080"
   vpc_id      = "vpc-367e885f"
 
+
   ingress {
     description = "SSH access"
     from_port   = 22
