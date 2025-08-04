@@ -26,7 +26,6 @@ resource "local_file" "public_key" {
   filename = "./.ssh/terraform_rsa.pub"
 }
 
-
 resource "aws_instance" "app_server" {
   ami                    = data.aws_ami.ubuntu.id
   instance_type          = "t3.micro"
