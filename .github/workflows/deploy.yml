@@ -28,16 +28,14 @@ jobs:
         with:
           terraform_version: 1.5.0
         
-      - name: Terraform Destroy
-        run: terraform destroy -auto-approve
-     
-
-
       - name: Terraform Init
         run: terraform init
 
       - name: Terraform Format
         run: terraform fmt 
+
+      - name: Terraform Destroy
+        run: terraform destroy -auto-approve
 
       - name: Terraform Plan
         run: terraform plan
