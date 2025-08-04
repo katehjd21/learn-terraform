@@ -37,10 +37,12 @@ runcmd:
   - git clone https://github.com/ivo-velev123/turbogears.git /home/ubuntu/turbogears
 
   # Build docker image
-  - docker build -t myapp /home/ubuntu/turbogears
+  - docker build -t myapp:latest /home/ubuntu/turbogears
+  - docker stop myapp || true
+  - docker rm myapp || true
 
   # Run docker container 
-  - docker run -d -p 8080:8080 --name myapp myapp
+  - docker run -d -p 8080:8080 --name myapp myapp:latest
 
 
 
