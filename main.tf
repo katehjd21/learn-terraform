@@ -30,8 +30,7 @@ resource "aws_instance" "app_server" {
   ami                    = data.aws_ami.ubuntu.id
   instance_type          = "t3.micro"
   subnet_id              = "subnet-84e2f4fc"
-  vpc_security_group_ids = [aws_security_group.app_sg.id]
-  key_name               = aws_key_pair.generated_key.key_name
+
 
   user_data = templatefile("${path.module}/cloud-init.yaml.tmpl", {
     instance_name = "terraform-practice"
