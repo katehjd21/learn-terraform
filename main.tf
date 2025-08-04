@@ -26,8 +26,13 @@ resource "local_file" "public_key" {
   filename = "./.ssh/terraform_rsa.pub"
 }
 
+resource "aws_key_pair" "generated_key" {
+  key_name   = "terraform-key"
+  public_key = tls_private_key.ssh_key.public_key_openssh
+}
+
 resource "aws_security_group" "app_sg" {
-  name        = "app-security-group"
+  name        = "terraform-app-security-group"
   description = "Allow SSH, HTTP, and 8080"
   vpc_id      = "vpc-367e885f"
 
@@ -73,6 +78,7 @@ resource "aws_instance" "app_server" {
   instance_type          = "t3.micro"
   subnet_id              = "subnet-84e2f4fc"
   vpc_security_group_ids = [aws_security_group.app_sg.id]
+  key_name               = aws_key_pair.generated_key.key_name
   user_data = templatefile("${path.module}/cloud-init.yaml.tmpl", {
     instance_name = "terraform-practice"
   })
