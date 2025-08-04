@@ -4,9 +4,6 @@ on:
   push:
     branches:
       - main
-  pull_request:
-    branches:
-      - main
 
 jobs:
   terraform-fmt:
@@ -25,12 +22,18 @@ jobs:
         run: terraform fmt -check
 
   terraform-plan:
-    name: Terraform Plan (PRs & Main)
+    name: Terraform Plan 
     runs-on: ubuntu-latest
     needs: terraform-fmt
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::261219435789:role/aws-reserved/sso.amazonaws.com/eu-west-2/AWSReservedSSO_SandboxUser_c230be41376233f0
+          aws-region: eu-west-2
 
       - name: Set up Terraform
         uses: hashicorp/setup-terraform@v2
@@ -42,10 +45,7 @@ jobs:
 
       - name: Terraform Plan
         run: terraform plan
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-    
+
   terraform-apply:
     name: Terraform Apply (Main only)
     if: github.ref == 'refs/heads/main'
@@ -54,6 +54,12 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::261219435789:role/aws-reserved/sso.amazonaws.com/eu-west-2/AWSReservedSSO_SandboxUser_c230be41376233f0
+          aws-region: eu-west-2
 
       - name: Set up Terraform
         uses: hashicorp/setup-terraform@v2
@@ -65,7 +71,5 @@ jobs:
 
       - name: Terraform Apply
         run: terraform apply -auto-approve
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
 
